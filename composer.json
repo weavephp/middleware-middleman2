@@ -1,0 +1,20 @@
+{
+	"name": "weavephp/middleware-middleman2",
+	"description": "Weave glue-framework Middleman Middleware adaptor",
+	"type": "package",
+	"version": "0.0.1",
+	"authors": [
+		{
+			"name": "Robert Goldsmith",
+			"email": "r.s.goldsmith@far-blue.co.uk"
+		}
+	],
+	"require": {
+		"mindplay/middleman": "~2.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Weave\\Middleware\\Middleman\\": "src/"
+		}
+	}
+}
