@@ -18,7 +18,7 @@ class Middleman implements \Weave\Middleware\MiddlewareAdaptorInterface
 	 *
 	 * @var callable
 	 */
-	protected $_resolver;
+	protected $resolver;
 
 	/**
 	 * Set a callable on the Adaptor that can be used to resolve strings to class instances.
@@ -29,7 +29,7 @@ class Middleman implements \Weave\Middleware\MiddlewareAdaptorInterface
 	 */
 	public function setResolver(callable $resolver)
 	{
-		$this->_resolver = $resolver;
+		$this->resolver = $resolver;
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Middleman implements \Weave\Middleware\MiddlewareAdaptorInterface
 	 */
 	public function executePipeline($pipeline, Request $request, Response $response = null)
 	{
-		$middleman = new \mindplay\middleman\Dispatcher($pipeline, $this->_resolver);
+		$middleman = new \mindplay\middleman\Dispatcher($pipeline, $this->resolver);
 		return $middleman->dispatch($request);
 	}
 }
