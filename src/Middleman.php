@@ -24,9 +24,9 @@ class Middleman implements \Weave\Middleware\MiddlewareAdaptorInterface
 	 *
 	 * @param callable $resolver The resolver.
 	 *
-	 * @return void
+	 * @return null
 	 */
-	public function setResolver(callable $resolver): void
+	public function setResolver(callable $resolver)
 	{
 		$this->resolver = $resolver;
 	}
@@ -36,7 +36,7 @@ class Middleman implements \Weave\Middleware\MiddlewareAdaptorInterface
 	 *
 	 * @return boolean
 	 */
-	public function isDoublePass(): bool
+	public function isDoublePass()
 	{
 		return false;
 	}
@@ -44,15 +44,15 @@ class Middleman implements \Weave\Middleware\MiddlewareAdaptorInterface
 	/**
 	 * Trigger execution of the supplied pipeline through Middleman.
 	 *
-	 * @param mixed     $pipeline The stack of middleware definitions.
-	 * @param Request   $request  The PSR7 request.
-	 * @param ?Response $response The PSR7 response (for double-pass stacks).
+	 * @param mixed    $pipeline The stack of middleware definitions.
+	 * @param Request  $request  The PSR7 request.
+	 * @param Response $response The PSR7 response (for double-pass stacks).
 	 *
 	 * @return Response
 	 */
-	public function executePipeline($pipeline, Request $request, ?Response $response = null): Response
+	public function executePipeline($pipeline, Request $request, Response $response = null)
 	{
 		$middleman = new \mindplay\middleman\Dispatcher($pipeline, $this->resolver);
-		return $middleman->handle($request);
+		return $middleman->dispatch($request);
 	}
 }
